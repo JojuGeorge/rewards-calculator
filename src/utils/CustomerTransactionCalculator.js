@@ -1,9 +1,7 @@
-import React from 'react'
 
-function CustomerTransactionCalculator() {
-  return (
-    <div>CustomerTransactionCalculator</div>
-  )
+function CustomerTransactionCalculator(transactionData) {
+    console.log(transactionData)
+ 
 }
 
 export default CustomerTransactionCalculator

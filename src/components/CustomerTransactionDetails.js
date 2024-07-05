@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Transaction from "./Transaction";
 import GetTransactionDataset from "../service/TransactionDatasetApi";
-import CustomerTransactionCalculator from "../utils/CustomerTransactionCalculator";
+import {CustomerTransactionCalculator} from "../utils/CustomerTransactionCalculator";
 
 // Wrapper component
 function CustomerTransactionDetails() {
 
-  const [transactionDataSet, setTransactionDataSet] = useState();
-  const [computedData, setComputedData] = useState();
+  const [transactionDataSet, setTransactionDataSet] = useState([]);
+  const [computedData, setComputedData] = useState({});
 
   useEffect(()=>{
     let dataSet;
@@ -15,7 +15,6 @@ function CustomerTransactionDetails() {
       try{
         dataSet = await GetTransactionDataset();
         setTransactionDataSet(dataSet)
-
       }catch(error){
         console.log(error)
       }
@@ -26,12 +25,18 @@ function CustomerTransactionDetails() {
 
   useEffect(()=>{
     let compData = CustomerTransactionCalculator(transactionDataSet);
+    setComputedData(compData)
   }, [transactionDataSet])
 
   return (
     <div>
-     
-      <Transaction />
+      data...
+      {/* {computedData && console.log(computedData)} */}
+     {
+     Object.keys(computedData).map((item, i)=>{
+      <Transaction item={item}/>
+      })
+     }
     </div>
   );
 }

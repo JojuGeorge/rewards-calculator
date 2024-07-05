@@ -7,6 +7,13 @@
     "amount": 200
   },
   {
+    "transactionId": 11,
+    "customerId": 1,
+    "customerName": "Customer One",
+    "transactionDate": "2024-01-14",
+    "amount": 100
+  },
+  {
     "transactionId": 2,
     "customerId": 1,
     "customerName": "Customer One",
@@ -18,20 +25,27 @@
     "customerId": 1,
     "customerName": "Customer One",
     "transactionDate": "2024-03-08",
-    "amount": 150
+    "amount": 10
   },
   {
     "transactionId": 4,
     "customerId": 2,
     "customerName": "Customer Two",
     "transactionDate": "2024-03-12",
-    "amount": 220
+    "amount": 100
   },
   {
     "transactionId": 5,
     "customerId": 3,
     "customerName": "Customer Three",
     "transactionDate": "2024-05-25",
-    "amount": 310
+    "amount": 120
+  },
+  {
+    "transactionId": 66,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2024-07-25",
+    "amount": 80
   }
 ]

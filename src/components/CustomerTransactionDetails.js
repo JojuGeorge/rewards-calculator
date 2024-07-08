@@ -24,19 +24,23 @@ function CustomerTransactionDetails() {
   },[])
 
   useEffect(()=>{
-    let compData = CustomerTransactionCalculator(transactionDataSet);
+    const compData = CustomerTransactionCalculator(transactionDataSet);
     setComputedData(compData)
   }, [transactionDataSet])
 
+
   return (
     <div>
-      data...
-      {/* {computedData && console.log(computedData)} */}
+
+      {JSON.stringify(computedData)}
+
      {
-     Object.keys(computedData).map((item, i)=>{
-      <Transaction item={item}/>
+     computedData && Object.keys(computedData).map((customerId)=>{
+      <Transaction tst="hi there" tst1={"lskdjf"}/>
       })
      }
+
+     
     </div>
   );
 }

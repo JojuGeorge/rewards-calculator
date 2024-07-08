@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react'
 
-
-// Shows transaction details of each customer
-function Transaction({item}) {
-  return <div>hi {item}</div>;
+function Transaction(props) {
+  return (
+    <div>transactjion..
+      {console.log(props)}
+    </div>
+  )
 }
 
 export default Transaction;

@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function Transaction(props) {
-  return (
-    <div>transactjion..
-      {console.log(props)}
-    </div>
-  )
+function Transaction({ customerId, computedData }) {
+  return <div></div>;
 }
 
 export default Transaction;

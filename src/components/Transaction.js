@@ -1,13 +1,12 @@
 import React from "react";
+import Table from 'react-bootstrap/Table'
 
 function Transaction({ customerId, computedData }) {
   return (
     <div>
       <div>
-        <h4
-          style={{ textAlign: "left" }}
-        >{`${customerId}. ${computedData[customerId].customerName}`}</h4>
-        <table>
+        <h4>{`${customerId}. ${computedData[customerId].customerName}`}</h4>
+        <Table striped bordered hover size='sm'>
           <thead>
             <tr>
               <th>Month</th>
@@ -43,8 +42,7 @@ function Transaction({ customerId, computedData }) {
               <td>{computedData[customerId].totalRewards}</td>
             </tr>
           </tbody>
-        </table>
-        <hr />
+        </Table>
       </div>
     </div>
   );

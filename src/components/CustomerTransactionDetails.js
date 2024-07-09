@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Transaction from "./Transaction";
 import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
+import { Container, Row } from "react-bootstrap";
+import "./styles/css/CustomerTransactionDetails.css"
 
 // Wrapper component
 function CustomerTransactionDetails() {
@@ -28,7 +30,7 @@ function CustomerTransactionDetails() {
   }, [transactionDataSet]);
 
   return (
-    <div>
+    <div className="cust-transaction-details-wrapper"> 
       {Object.keys(computedData).map((customerId) => (
         <Transaction
           key={customerId}

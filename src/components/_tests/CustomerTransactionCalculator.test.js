@@ -2,7 +2,7 @@ import { CustomerTransactionCalculator } from "../../utils/CustomerTransactionCa
 
 describe("Calculate reward points, purchase and check correct dataset", ()=> {
 
-    test("Reward points calculation for singe transaction", ()=>{
+    test("Reward points calculation for singe transaction above 100", ()=>{
         const transactionData = [{
             "transactionId": 1,
             "customerId": 1,
@@ -129,12 +129,56 @@ describe("Calculate reward points, purchase and check correct dataset", ()=> {
         expect(CustomerTransactionCalculator(transactionData)).toEqual(expectedDataset)
     });
 
-    test("Reward points calculation for empty data set", ()=>{
-        const transactionData = [];
+    test("Reward points calculation for multiple transaction with different customer with amount between 50 and 100 and amount below 50", ()=>{
+        const transactionData = [{
+            "transactionId": 1,
+            "customerId": 1,
+            "customerName": "Customer One",
+            "transactionDate": "2024-01-12",
+            "amount": 60
+        },
+        {
+            "transactionId": 2,
+            "customerId": 2,
+            "customerName": "Customer Two",
+            "transactionDate": "2024-02-14",
+            "amount": 20
+        }
+        ];
 
-        const expectedDataset = {}
+        const expectedDataset = {
+            1: {
+                "customerName": "Customer One",
+                "monthlyTransaction": {
+                    "January": {
+                        "monthlyAmount": 60,
+                        "monthlyReward": 10
+                    }
+                },
+                "totalRewards": 10,
+                "totalPurchase": 60
+            },
+            2: {
+                "customerName": "Customer Two",
+                "monthlyTransaction": {
+                    "February": {
+                        "monthlyAmount": 20,
+                        "monthlyReward": 0
+                    }
+                },
+                "totalRewards": 0,
+                "totalPurchase": 20
+            },
+        }
 
         expect(CustomerTransactionCalculator(transactionData)).toEqual(expectedDataset)
     });
+    
+    test("Reward points calculation for empty data set", ()=>{
+        const transactionData = [];
 
+        const expectedDataset = {};
+
+        expect(CustomerTransactionCalculator(transactionData)).toEqual(expectedDataset)
+    });
 })

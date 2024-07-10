@@ -6,7 +6,7 @@ const GetTransactionDataset = async () =>  {
     try{
         const response = await fetch("/data-source/CustomerTransactionDataset.json");
         if(!response.ok){
-            throw new Error("error")
+            throw new Error("Error, data not found")
         }
         const data = await response.json();
         return data;

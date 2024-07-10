@@ -30,15 +30,19 @@ function CustomerTransactionDetails() {
   }, [transactionDataSet]);
 
   return (
-    <div className="cust-transaction-details-wrapper"> 
-      {Object.keys(computedData).map((customerId) => (
-        <Transaction
-          key={customerId}
-          customerId={customerId}
-          computedData={computedData}
-        />
-      ))}
+    <div className="cust-transaction-details-container">
+      <h3>Customer Transaction Details</h3>
+      <div className="cust-transaction-details-wrapper"> 
+        {Object.keys(computedData).map((customerId) => (
+          <Transaction
+            key={customerId}
+            customerId={customerId}
+            computedData={computedData}
+          />
+        ))}
+      </div>
     </div>
+
   );
 }
 

@@ -1,4 +1,7 @@
 
+.cust-transaction-details-container{
+    margin-top: 1.5rem;
+}
 
 .cust-transaction-details-wrapper {
     display: grid;

@@ -4,6 +4,7 @@ import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
 import { Container, Row } from "react-bootstrap";
 import "./styles/css/CustomerTransactionDetails.css"
+import { logger } from "../logger";
 
 // Wrapper component
 function CustomerTransactionDetails() {
@@ -14,9 +15,10 @@ function CustomerTransactionDetails() {
     const getDataSet = async () => {
       try {
         const dataSet = await GetTransactionDataset();
+        logger.log("Fetched customer transaction dataset",dataSet)
         setTransactionDataSet(dataSet);
       } catch (error) {
-        console.log(error);
+        logger.error(error);
       }
     };
     getDataSet();
@@ -25,6 +27,8 @@ function CustomerTransactionDetails() {
   useEffect(() => {
     if (transactionDataSet.length > 0) {
       const compData = CustomerTransactionCalculator(transactionDataSet);
+      Object.keys(compData).map(custId => logger.log("Computed Trasaction details of",computedData[custId]))
+      logger.log("Dataset of transaction after calculating reward points",compData)
       setComputedData(compData);
     }
   }, [transactionDataSet]);

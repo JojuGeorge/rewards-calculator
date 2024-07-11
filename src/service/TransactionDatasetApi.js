@@ -1,4 +1,6 @@
-import axios from 'axios';
+import { logger } from '../logger';
+import { Config } from '../utils/Config';
+
 
 
 const GetTransactionDataset = async () =>  {
@@ -6,12 +8,13 @@ const GetTransactionDataset = async () =>  {
     try{
         const response = await fetch("/data-source/CustomerTransactionDataset.json");
         if(!response.ok){
-            throw new Error("Error, data not found")
+            logger.error("Data not found")
         }
         const data = await response.json();
         return data;
     }catch(error){
-        console.log(error)
+        logger.error(Config.ERR_SOMETHING_WENT_WRONG, error)
+        throw new Error(Config.ERR_SOMETHING_WENT_WRONG)
     }
 }
 

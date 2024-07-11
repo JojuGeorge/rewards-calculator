@@ -10,6 +10,7 @@ import { logger } from "../logger";
 function CustomerTransactionDetails() {
   const [transactionDataSet, setTransactionDataSet] = useState([]);
   const [computedData, setComputedData] = useState({});
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getDataSet = async () => {
@@ -18,6 +19,7 @@ function CustomerTransactionDetails() {
         logger.log("Fetched customer transaction dataset",dataSet)
         setTransactionDataSet(dataSet);
       } catch (error) {
+        setError(error)
         logger.error(error);
       }
     };
@@ -25,13 +27,17 @@ function CustomerTransactionDetails() {
   }, []);
 
   useEffect(() => {
-    if (transactionDataSet.length > 0) {
+    if (transactionDataSet && transactionDataSet.length > 0) {
       const compData = CustomerTransactionCalculator(transactionDataSet);
       Object.keys(compData).map(custId => logger.log("Computed Trasaction details of",computedData[custId]))
       logger.log("Dataset of transaction after calculating reward points",compData)
       setComputedData(compData);
     }
   }, [transactionDataSet]);
+
+
+  if(error) 
+    return <p>{error.message}</p>
 
   return (
     <div className="cust-transaction-details-container">

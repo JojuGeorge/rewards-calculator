@@ -1,12 +1,15 @@
 import {CustomerRewardCalculator} from "./CustomerRewardCalculator";
 
+// Calculates the Reward points and total purchase amount of the customer transaction dataset
 export const  CustomerTransactionCalculator = (transactionDataSet)=> {
 
 
+    // Returns an Object of computed customer transaction dataset
     const transactionData = transactionDataSet && transactionDataSet.reduce((res,transactionData) => {
         const {customerId, customerName, transactionId, transactionDate, amount } = transactionData;
         
         const month = new Date(transactionDate).toLocaleString('default', {month:'long'});
+        // Calculate the Reward points based on the amount of purchase
         const rewardPoints = CustomerRewardCalculator(amount);
 
 

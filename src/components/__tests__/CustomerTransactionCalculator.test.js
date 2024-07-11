@@ -2,7 +2,7 @@ import { CustomerTransactionCalculator } from "../../utils/CustomerTransactionCa
 
 describe("Calculate reward points, purchase and check correct dataset", ()=> {
 
-    test("Reward points calculation for singe transaction above 100", ()=>{
+    test("Reward points calculation for single transaction above 100", ()=>{
         const transactionData = [{
             "transactionId": 1,
             "customerId": 1,

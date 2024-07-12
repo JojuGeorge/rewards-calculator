@@ -25,3 +25,5 @@ Given a record of every transaction during a three month period, calculate the r
    >> npm start
    >>
    >
+
+   This will start running the ReactJS application in localhost

@@ -12,6 +12,7 @@ const GetTransactionDataset = async () =>  {
             logger.error("Data not found")
         }
         const data = await response.json();
+        logger.log("Fetch customer transaction data")
         return data;
     }catch(error){  
         logger.error(Config.ERR_SOMETHING_WENT_WRONG, error)

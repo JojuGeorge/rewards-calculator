@@ -17,7 +17,7 @@ function CustomerTransactionDetails() {
     const getDataSet = async () => {
       try {
         const dataSet = await GetTransactionDataset();
-        logger.log("Fetched customer transaction dataset",dataSet)
+        logger.log("Set Fetched customer transaction dataset",dataSet)
         setTransactionDataSet(dataSet);
       } catch (error) {
         setError(error)

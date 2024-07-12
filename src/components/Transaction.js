@@ -1,13 +1,14 @@
 import React from "react";
-import Table from 'react-bootstrap/Table'
+import {Table, Card} from 'react-bootstrap'
+import "../styles/css/Transaction.css"
 
 function Transaction({ customerId, computedData }) {
   return (
-    <div>
-      <div>
-        <h4>{`${customerId}. ${computedData[customerId].customerName}`}</h4>
-        <Table striped bordered hover size='sm'>
-          <thead>
+    <div> 
+      <Card className="card" label={`${customerId}. ${computedData[customerId].customerName}`}>
+        {/* <h4 label="Customer" className="table-name">{`${customerId}. ${computedData[customerId].customerName}`}</h4> */}
+        <table className="table table-striped sm-2">
+          <thead className="table-head table-dark">
             <tr>
               <th>Month</th>
               <th>Amount Spent</th>
@@ -42,8 +43,10 @@ function Transaction({ customerId, computedData }) {
               <td>{computedData[customerId].totalRewards}</td>
             </tr>
           </tbody>
-        </Table>
-      </div>
+        </table>
+
+        <div className="total-reward-points"> <b>Total Reward Points : </b> {computedData[customerId].totalRewards}</div>
+      </Card>
     </div>
   );
 }

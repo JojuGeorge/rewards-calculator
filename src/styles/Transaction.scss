@@ -1,0 +1,43 @@
+@import "variables";
+
+
+.card {
+    padding: 1rem;
+    border: none;
+  
+    &::before {
+      content: attr(label);
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(-100%);
+      background: $clr-white-1;
+      color: $clr-black-1;
+      border-top-right-radius: $radius;
+      border-top-left-radius: $radius;
+      text-transform: capitalize;
+      padding: 0.5rem 1rem 0 1rem;
+      letter-spacing: $letter-spacing;
+      font-size: 1rem;
+    }
+  }
+
+
+.table-name{
+    padding: .5rem;
+   
+}
+
+table{
+    box-shadow: 5px 5px $clr-gray-2;      
+}
+
+.table-head{
+    background-color: $clr-gray-1;
+}
+
+.total-reward-points{
+    text-align: center;
+    padding: .2rem;
+    background-color: $clr-gray-1;
+}

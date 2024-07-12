@@ -44,7 +44,7 @@ function CustomerTransactionDetails() {
 
   return (
     <div className="cust-transaction-details-container">
-      <h3>Customer Transaction Details</h3>
+      <h3 className="heading">Customer Transaction Details</h3>
       <div className="cust-transaction-details-wrapper"> 
         {Object.keys(computedData).map((customerId) => (
           // Iterate through each computed customer transaction dataset and render it

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Transaction from "./Transaction";
 import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
-import "./styles/css/CustomerTransactionDetails.css"
+import "../styles/css/CustomerTransactionDetails.css"
 import { logger } from "../logger";
 
 // Wrapper component

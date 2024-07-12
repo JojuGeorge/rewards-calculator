@@ -1,4 +1,4 @@
-import CustomerRewardCalculator from "../../utils/CustomerRewardCalculator";
+import CustomerRewardCalculator from "../utils/CustomerRewardCalculator";
 
 describe("Testcase calculating Reward points based on Transaction", ()=>{
     test("Correct reward point for transaction between 50 to 100", ()=>{

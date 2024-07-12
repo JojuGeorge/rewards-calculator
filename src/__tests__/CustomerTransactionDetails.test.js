@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import CustomerTransactionDetails from "../CustomerTransactionDetails";
+import CustomerTransactionDetails from "../components/CustomerTransactionDetails";
 
 describe("Test Customer Transaction Details component", ()=>{
     test("Test Customer Transaction Details component properly loaded", ()=>{

@@ -1,4 +1,4 @@
-import { CustomerTransactionCalculator } from "../../utils/CustomerTransactionCalculator";
+import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
 
 describe("Calculate reward points, purchase and check correct dataset", ()=> {
 

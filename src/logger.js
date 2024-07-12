@@ -1,5 +1,6 @@
-import { LOG_LEVEL } from "./environment"
 
+const APP_ENV = process.env.REACT_APP_APP_ENV === "production" ? "production" : "development"
+const LOG_LEVEL = APP_ENV === "production" ? "warn" : "log"
 const NO_OP = (message, ...optionalParams) => {}
 
 /** Logger which outputs to the browser console */

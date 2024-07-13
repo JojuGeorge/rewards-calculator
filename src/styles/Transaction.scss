@@ -4,7 +4,8 @@
 .card {
     padding: 1rem;
     border: none;
-  
+    box-shadow: 5px 5px $clr-gray-3;      
+
     &::before {
       content: attr(label);
       position: absolute;

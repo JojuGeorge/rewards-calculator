@@ -46,14 +46,14 @@ function CustomerTransactionDetails() {
     <div className="cust-transaction-details-container">
       <h3 className="heading">Customer Transaction Details</h3>
       <div className="cust-transaction-details-wrapper"> 
-        {Object.keys(computedData).map((customerId) => (
+        {/* {Object.keys(computedData).map((customerId) => (
           // Iterate through each computed customer transaction dataset and render it
           <Transaction
             key={customerId}
             customerId={customerId}
             computedData={computedData}
           />
-        ))}
+        ))} */}
       </div>
     </div>
 

@@ -17,7 +17,7 @@ export const CustomerRewardCalculator = (amount) => {
 
     }
     logger.log(`Reward points for amount ${amount} : ${rewardPoints}`)
-    return rewardPoints;
+    return Math.round(rewardPoints);
 }
 
 export default CustomerRewardCalculator

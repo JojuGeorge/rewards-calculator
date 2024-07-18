@@ -1,53 +1,83 @@
 import React from "react";
-import {Table, Card} from 'react-bootstrap'
-import "../styles/css/Transaction.css"
 
-function Transaction({ customerId, computedData }) {
+function Transaction({ customerId, data }) {
+  const { customerName } = data;
+  // console.log(yearlyTransaction);
+
   return (
-    <div> 
-      <Card className="card" label={`${customerId}. ${computedData[customerId].customerName}`}>
-        <table className="table table-striped sm-2">
-          <thead className="table-head table-dark">
-            <tr>
-              <th>Month</th>
-              <th>Amount Spent</th>
-              <th>Points Earned</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(computedData[customerId].monthlyTransaction).map(
-              (month) => (
-                <tr key={month}>
-                  <td>{month}</td>
-                  <td>
-                    {
-                      computedData[customerId].monthlyTransaction[month]
-                        .monthlyAmount
+    <div className="transaction-table-container">
+      <table className="transaction-table">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Monthly Amount</th>
+            <th>Monthly Rewards</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(data[customerId].yearlyTransaction).map((year) => {
+            console.log(year);
+            return (
+              <React.Fragment key={`${data.customerId}-${year}`}>
+                <TransactionRow
+                  customerName={customerName}
+                  year={year}
+                  yearData={data[customerId].yearlyTransaction[year]}
+                />
+                {Object.keys(
+                  data[customerId].yearlyTransaction[year].monthlyTransaction
+                ).map((month) => (
+                  <MonthlyTransactionRow
+                    key={`${data.customerId}-${year}-${month}`}
+                    month={month}
+                    monthData={
+                      data[customerId].yearlyTransaction[year]
+                        .monthlyTransaction[month]
                     }
+                  />
+                ))}
+
+                <tr>
+                  <th>Total</th>
+                  <td></td>
+                  <td>
+                    {data[customerId].yearlyTransaction[year].totalPurchase}
                   </td>
                   <td>
-                    {
-                      computedData[customerId].monthlyTransaction[month]
-                        .monthlyReward
-                    }
+                    {data[customerId].yearlyTransaction[year].totalRewards}
                   </td>
                 </tr>
-              )
-            )}
-            <tr>
-              <td>
-                <b>Total</b>
-              </td>
-              <td>{computedData[customerId].totalPurchase}</td>
-              <td>{computedData[customerId].totalRewards}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div className="total-reward-points"> <b>Total Reward Points : </b> {computedData[customerId].totalRewards}</div>
-      </Card>
+              </React.Fragment>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
+
+const TransactionRow = ({ customerName, year, yearData }) => {
+  return (
+    <tr>
+      <td rowSpan={Object.keys(yearData.monthlyTransaction).length + 1}>
+        {year}
+      </td>
+      <td></td> {/* Placeholder for month in the yearly row */}
+      <td></td> {/* Placeholder for monthly amount in the yearly row */}
+      <td></td> {/* Placeholder for monthly rewards in the yearly row */}
+    </tr>
+  );
+};
+
+const MonthlyTransactionRow = ({ month, monthData }) => {
+  return (
+    <tr>
+      <td>{month}</td>
+      <td>{monthData.monthlyAmount.toFixed(2)}</td>
+      <td>{monthData.monthlyReward}</td>
+    </tr>
+  );
+};
 
 export default Transaction;

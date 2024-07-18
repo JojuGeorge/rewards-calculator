@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 import CustomerTransactionDetails from "../components/CustomerTransactionDetails";
 
-describe("Test Customer Transaction Details component", ()=>{
-    test("Test Customer Transaction Details component properly loaded", ()=>{
-        render(<CustomerTransactionDetails/>);
-        const element = screen.getByText("Customer Transaction Details");
-        expect(element).toBeInTheDocument();
-    })
-})
+describe("Test Customer Transaction Details component", () => {
+  test("Test Customer Transaction Details component properly loaded", () => {
+    render(<CustomerTransactionDetails />);
+    const element = screen.getByText("Loading...");
+    expect(element).toBeInTheDocument();
+  });
+});

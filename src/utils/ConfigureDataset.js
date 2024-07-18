@@ -51,7 +51,5 @@ export const calculateTotalRewards = (dataSet) => {
     )
   );
 
-  console.log(dataSet);
-
   return dataSet;
 };

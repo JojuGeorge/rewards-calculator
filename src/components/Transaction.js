@@ -6,7 +6,6 @@ function Transaction({ customerId, computedData }) {
   return (
     <div> 
       <Card className="card" label={`${customerId}. ${computedData[customerId].customerName}`}>
-        {/* <h4 label="Customer" className="table-name">{`${customerId}. ${computedData[customerId].customerName}`}</h4> */}
         <table className="table table-striped sm-2">
           <thead className="table-head table-dark">
             <tr>

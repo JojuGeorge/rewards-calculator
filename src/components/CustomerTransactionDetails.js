@@ -46,12 +46,12 @@ function CustomerTransactionDetails() {
     }
   }, [transactionDataSet]);
 
-  if (error) return <p>{error.message}</p>;
+  if (error) return <p className="errorMessage">{error.message}</p>;
 
   return (
     <div className="cust-transaction-details-container">
       {isLoading ? (
-        <h4>Loading...</h4>
+        <h4 className="loading">Loading...</h4>
       ) : (
         <>
           <h3 className="heading">Customer Transaction Details</h3>

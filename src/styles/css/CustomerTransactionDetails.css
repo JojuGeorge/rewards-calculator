@@ -21,3 +21,18 @@
     grid-template-columns: 1fr;
   }
 }
+
+.errorMessage {
+  height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 15%;
+  background-color: rgb(219, 204, 204);
+}
+
+.loading {
+  height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  padding-top: 15%;
+}

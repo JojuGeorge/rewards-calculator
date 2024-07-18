@@ -1,13 +1,16 @@
 import React from "react";
+import "../styles/css/Transaction.css";
 
 function Transaction({ customerId, data }) {
   const { customerName } = data;
-  // console.log(yearlyTransaction);
 
   return (
-    <div className="transaction-table-container">
-      <table className="transaction-table">
-        <thead>
+    <div
+      className="card"
+      label={`${customerId}.${data[customerId].customerName}`}
+    >
+      <table className="  sm-2">
+        <thead className="table-head">
           <tr>
             <th>Year</th>
             <th>Month</th>
@@ -17,7 +20,6 @@ function Transaction({ customerId, data }) {
         </thead>
         <tbody>
           {Object.keys(data[customerId].yearlyTransaction).map((year) => {
-            console.log(year);
             return (
               <React.Fragment key={`${data.customerId}-${year}`}>
                 <TransactionRow
@@ -37,15 +39,20 @@ function Transaction({ customerId, data }) {
                     }
                   />
                 ))}
-
-                <tr>
+                <tr className="total-row">
                   <th>Total</th>
                   <td></td>
                   <td>
-                    {data[customerId].yearlyTransaction[year].totalPurchase}
+                    {
+                      data[customerId].yearlyTransaction[year]
+                        .totalPurchasePerYear
+                    }
                   </td>
                   <td>
-                    {data[customerId].yearlyTransaction[year].totalRewards}
+                    {
+                      data[customerId].yearlyTransaction[year]
+                        .totalRewardsPerYear
+                    }
                   </td>
                 </tr>
               </React.Fragment>
@@ -53,6 +60,9 @@ function Transaction({ customerId, data }) {
           })}
         </tbody>
       </table>
+      <div className="total-reward-points">
+        <b>Total Reward Points : {data[customerId].totalRewards}</b>
+      </div>
     </div>
   );
 }
@@ -74,7 +84,7 @@ const MonthlyTransactionRow = ({ month, monthData }) => {
   return (
     <tr>
       <td>{month}</td>
-      <td>{monthData.monthlyAmount.toFixed(2)}</td>
+      <td>{monthData.monthlyAmount}</td>
       <td>{monthData.monthlyReward}</td>
     </tr>
   );

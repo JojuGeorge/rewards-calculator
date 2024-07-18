@@ -31,7 +31,19 @@ table {
   background-color: #f1f5f8;
 }
 
+.total-row {
+  margin-bottom: 1rem;
+  background-color: #f1f5f8;
+  border-bottom: 2px solid transparent;
+}
+
+tr {
+  text-align: center;
+  border-top: 2px solid transparent;
+}
+
 .total-reward-points {
+  margin-top: 1rem;
   text-align: center;
   padding: 0.2rem;
   background-color: #f1f5f8;

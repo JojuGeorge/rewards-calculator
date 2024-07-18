@@ -34,12 +34,13 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
         res[customerId] = {
           customerName: "",
           yearlyTransaction: {},
+          totalRewards: 0,
         };
 
       if (!res[customerId].yearlyTransaction[year])
         res[customerId].yearlyTransaction[year] = {
-          totalRewards: 0,
-          totalPurchase: 0,
+          totalRewardsPerYear: 0,
+          totalPurchasePerYear: 0,
           monthlyTransaction: {},
         };
 
@@ -56,8 +57,10 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
         month
       ].monthlyReward += rewardPoints;
       res[customerId].customerName = customerName;
-      res[customerId].yearlyTransaction[year].totalPurchase += amount;
-      res[customerId].yearlyTransaction[year].totalRewards += rewardPoints;
+      res[customerId].yearlyTransaction[year].totalPurchasePerYear +=
+        Math.round(amount);
+      res[customerId].yearlyTransaction[year].totalRewardsPerYear +=
+        rewardPoints;
 
       return res;
     }, {});

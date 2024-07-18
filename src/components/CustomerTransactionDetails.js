@@ -4,7 +4,7 @@ import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
 import "../styles/css/CustomerTransactionDetails.css";
 import { logger } from "../logger";
-
+import { calculateTotalRewards } from "../utils/ConfigureDataset";
 // Wrapper component
 function CustomerTransactionDetails() {
   const [transactionDataSet, setTransactionDataSet] = useState([]);
@@ -30,7 +30,7 @@ function CustomerTransactionDetails() {
     // Check if the Customer transaction dataset was successfully fetched
     if (transactionDataSet && transactionDataSet.length > 0) {
       // Calculate the reward points of the fetched customer transaction dataset
-      const compData = CustomerTransactionCalculator(transactionDataSet);
+      let compData = CustomerTransactionCalculator(transactionDataSet);
       Object.keys(compData).map((custId) =>
         logger.log("Computed Trasaction details of", computedData[custId])
       );
@@ -38,6 +38,7 @@ function CustomerTransactionDetails() {
         "Dataset of transaction after calculating reward points",
         compData
       );
+      compData = calculateTotalRewards(compData);
       setComputedData(compData);
     }
   }, [transactionDataSet]);
@@ -48,21 +49,14 @@ function CustomerTransactionDetails() {
     <div className="cust-transaction-details-container">
       <h3 className="heading">Customer Transaction Details</h3>
       <div className="cust-transaction-details-wrapper">
-        {Object.keys(computedData).map(
-          (customerId) => (
-            // Iterate through each computed customer transaction dataset and render it
-            <Transaction
-              key={customerId}
-              customerId={customerId}
-              data={computedData}
-            />
-          )
-
-          // test
-          // console.log(
-          //   Object.keys(computedData[customerId].yearlyTransaction).length
-          // )
-        )}
+        {Object.keys(computedData).map((customerId) => (
+          // Iterate through each computed customer transaction dataset and render it
+          <Transaction
+            key={customerId}
+            customerId={customerId}
+            data={computedData}
+          />
+        ))}
       </div>
     </div>
   );

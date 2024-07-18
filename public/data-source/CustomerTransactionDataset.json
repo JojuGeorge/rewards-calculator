@@ -47,5 +47,19 @@
     "customerName": "Customer Four",
     "transactionDate": "2024-07-25",
     "amount": 80
+  },
+  {
+    "transactionId": 68,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2023-04-02",
+    "amount": 44
+  },
+  {
+    "transactionId": 69,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2024-06-05",
+    "amount": 60
   }
 ]

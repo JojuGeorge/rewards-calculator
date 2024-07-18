@@ -9,12 +9,14 @@ import { calculateTotalRewards } from "../utils/ConfigureDataset";
 function CustomerTransactionDetails() {
   const [transactionDataSet, setTransactionDataSet] = useState([]);
   const [computedData, setComputedData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Get the Customer transaction dataset from API endpoint
     const getDataSet = async () => {
       try {
+        setIsLoading(true);
         const dataSet = await GetTransactionDataset();
         logger.log("Set Fetched customer transaction dataset", dataSet);
         setTransactionDataSet(dataSet);
@@ -29,6 +31,7 @@ function CustomerTransactionDetails() {
   useEffect(() => {
     // Check if the Customer transaction dataset was successfully fetched
     if (transactionDataSet && transactionDataSet.length > 0) {
+      setIsLoading(false);
       // Calculate the reward points of the fetched customer transaction dataset
       let compData = CustomerTransactionCalculator(transactionDataSet);
       Object.keys(compData).map((custId) =>
@@ -47,17 +50,23 @@ function CustomerTransactionDetails() {
 
   return (
     <div className="cust-transaction-details-container">
-      <h3 className="heading">Customer Transaction Details</h3>
-      <div className="cust-transaction-details-wrapper">
-        {Object.keys(computedData).map((customerId) => (
-          // Iterate through each computed customer transaction dataset and render it
-          <Transaction
-            key={customerId}
-            customerId={customerId}
-            data={computedData}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <h4>Loading...</h4>
+      ) : (
+        <>
+          <h3 className="heading">Customer Transaction Details</h3>
+          <div className="cust-transaction-details-wrapper">
+            {Object.keys(computedData).map((customerId) => (
+              // Iterate through each computed customer transaction dataset and render it
+              <Transaction
+                key={customerId}
+                customerId={customerId}
+                data={computedData}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { CustomerRewardCalculator } from "./CustomerRewardCalculator";
-import { ConfigureDataset } from "./ConfigureDataset";
+import { ConfigureDataset } from "./configureDataset/ConfigureDataset";
 import { logger } from "../logger";
 
 // Calculates the Reward points and total purchase amount of the customer transaction dataset

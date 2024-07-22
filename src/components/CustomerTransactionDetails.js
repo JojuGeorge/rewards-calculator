@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Transaction from "./Transaction";
+import Transaction from "./transaction/Transaction";
 import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
 import "../styles/css/CustomerTransactionDetails.css";
 import { logger } from "../logger";
-import { calculateTotalRewards } from "../utils/ConfigureDataset";
+import { calculateTotalRewards } from "../utils/configureDataset/CalculateTotalRewards";
+
 // Wrapper component
 function CustomerTransactionDetails() {
   const [transactionDataSet, setTransactionDataSet] = useState([]);

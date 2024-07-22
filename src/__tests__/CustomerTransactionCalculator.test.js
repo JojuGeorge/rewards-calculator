@@ -1,5 +1,5 @@
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
-import { calculateTotalRewards } from "../utils/ConfigureDataset";
+import { calculateTotalRewards } from "../utils/configureDataset/ConfigureDataset";
 
 describe("Calculate reward points, purchase and check correct dataset", () => {
   test("Reward points calculation for single transaction above 100", () => {

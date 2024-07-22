@@ -1,5 +1,5 @@
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
-import { calculateTotalRewards } from "../utils/configureDataset/ConfigureDataset";
+import { calculateTotalRewards } from '../utils/configureDataset/CalculateTotalRewards'
 
 describe("Calculate reward points, purchase and check correct dataset", () => {
   test("Reward points calculation for single transaction above 100", () => {
@@ -29,6 +29,41 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 90,
+      },
+    };
+
+    expect(
+      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+    ).toEqual(expectedDataset);
+  });
+
+  test("Calculate transaction with purchases with a decimal point 200.3", () => {
+    const transactionData = [
+      {
+        transactionId: 1,
+        customerId: 1,
+        customerName: "Customer One",
+        transactionDate: "2024-01-12",
+        amount: 200.3,
+      },
+    ];
+
+    const expectedDataset = {
+      1: {
+        customerName: "Customer One",
+        yearlyTransaction: {
+          2024: {
+            totalRewardsPerYear: 251,
+            totalPurchasePerYear: 200,
+            monthlyTransaction: {
+              January: {
+                monthlyAmount: 200.3,
+                monthlyReward: 251,
+              },
+            },
+          },
+        },
+        totalRewards: 251,
       },
     };
 

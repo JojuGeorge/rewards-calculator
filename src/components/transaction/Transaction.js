@@ -64,6 +64,9 @@ function Transaction({ customerId, data }) {
       <div className="total-reward-points">
         <b>Total Reward Points : {data[customerId].totalRewards}</b>
       </div>
+    <div>
+      
+    </div>
     </div>
   );
 }

@@ -10,14 +10,3 @@ export const TransactionRow = ({ year, yearData }) => {
       </tr>
     );
   };
-  
-export const MonthlyTransactionRow = ({ month, monthData }) => {
-    return (
-      <tr>
-        <td>{month}</td>
-        <td>{monthData.monthlyAmount}</td>
-        <td>{monthData.monthlyReward}</td>
-      </tr>
-    );
-  };
-  

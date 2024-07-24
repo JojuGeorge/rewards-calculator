@@ -27,3 +27,11 @@ Given a record of every transaction during a three month period, calculate the r
    >
 
    This will start running the ReactJS application in localhost
+
+6. You can run all the test cases using the below command
+
+   >> npm test
+   >>
+   >
+
+   This will start running all the tests

@@ -1,5 +1,6 @@
 import React from "react";
-import { TransactionRow, MonthlyTransactionRow } from "./TransactionConfig";
+import { TransactionRow } from "./TransactionRow";
+import { MonthlyTransactionRow } from "./MonthlyTransactionRow";
 import "../../styles/css/Transaction.css";
 
 function Transaction({ customerId, data }) {
@@ -15,8 +16,8 @@ function Transaction({ customerId, data }) {
           <tr>
             <th>Year</th>
             <th>Month</th>
-            <th>Monthly Amount</th>
-            <th>Monthly Rewards</th>
+            <th>Amount</th>
+            <th>Rewards</th>
           </tr>
         </thead>
         <tbody>
@@ -43,15 +44,15 @@ function Transaction({ customerId, data }) {
                 <tr className="total-row">
                   <th>Total</th>
                   <td></td>
-                  <td>{
+                  <td><b>${
                       data[customerId].yearlyTransaction[year]
                         .totalPurchasePerYear
-                    }
+                    }</b>
                   </td>
-                  <td>{
+                  <td><b>{
                       data[customerId].yearlyTransaction[year]
                         .totalRewardsPerYear
-                    }
+                    }</b>
                   </td>
                 </tr>
               </React.Fragment>
@@ -60,7 +61,7 @@ function Transaction({ customerId, data }) {
         </tbody>
       </table>
       <div className="total-reward-points">
-        <b>Total Reward Points : {data[customerId].totalRewards}</b>
+        <b>Total Reward Points : {data[customerId].totalRewards} Points</b>
       </div>
     </div>
   );

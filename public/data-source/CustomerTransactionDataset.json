@@ -1,18 +1,25 @@
 [
   {
-    "transactionId": 4,
-    "customerId": 2,
-    "customerName": "Customer Two",
-    "transactionDate": "2024-03-12",
-    "amount": 100
-  },
-  {
     "transactionId": 2,
     "customerId": 1,
     "customerName": "Customer One",
     "transactionDate": "2023-02-20",
     "amount": 100
   },
+  {
+    "transactionId": 3,
+    "customerId": 1,
+    "customerName": "Customer One",
+    "transactionDate": "2023-03-08",
+    "amount": 10
+  },
+  {
+    "transactionId": 68,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2023-04-02",
+    "amount": 44
+  }
   {
     "transactionId": 1,
     "customerId": 1,
@@ -21,11 +28,11 @@
     "amount": 200.3
   },
   {
-    "transactionId": 3,
-    "customerId": 1,
-    "customerName": "Customer One",
-    "transactionDate": "2023-03-08",
-    "amount": 10
+    "transactionId": 4,
+    "customerId": 2,
+    "customerName": "Customer Two",
+    "transactionDate": "2024-03-12",
+    "amount": 100
   },
   {
     "transactionId": 3,
@@ -42,24 +49,17 @@
     "amount": 120
   },
   {
-    "transactionId": 66,
-    "customerId": 4,
-    "customerName": "Customer Four",
-    "transactionDate": "2024-07-25",
-    "amount": 80
-  },
-  {
-    "transactionId": 68,
-    "customerId": 4,
-    "customerName": "Customer Four",
-    "transactionDate": "2023-04-02",
-    "amount": 44
-  },
-  {
     "transactionId": 69,
     "customerId": 4,
     "customerName": "Customer Four",
     "transactionDate": "2024-06-05",
     "amount": 60
+  }
+  {
+    "transactionId": 66,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2024-07-25",
+    "amount": 80
   }
 ]

@@ -1,8 +1,6 @@
 const { src, dest, watch, series } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const flatten = require("gulp-flatten");
-// const rename = require("gulp-rename");
-const concat = require("gulp-concat");
 
 function buildStyles() {
   return src("src/**/*.scss")

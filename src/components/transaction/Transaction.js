@@ -43,14 +43,12 @@ function Transaction({ customerId, data }) {
                 <tr className="total-row">
                   <th>Total</th>
                   <td></td>
-                  <td>
-                    {
+                  <td>{
                       data[customerId].yearlyTransaction[year]
                         .totalPurchasePerYear
                     }
                   </td>
-                  <td>
-                    {
+                  <td>{
                       data[customerId].yearlyTransaction[year]
                         .totalRewardsPerYear
                     }
@@ -64,9 +62,6 @@ function Transaction({ customerId, data }) {
       <div className="total-reward-points">
         <b>Total Reward Points : {data[customerId].totalRewards}</b>
       </div>
-    <div>
-      
-    </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import React from "react";
 import Dashboard from "./pages/Dashboard";
 
 function App() {

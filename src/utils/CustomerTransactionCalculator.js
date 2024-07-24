@@ -18,7 +18,6 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
       const {
         customerId,
         customerName,
-        transactionId,
         transactionDate,
         amount,
       } = transactionData;

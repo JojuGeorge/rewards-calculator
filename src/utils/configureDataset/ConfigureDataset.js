@@ -34,7 +34,7 @@ function getLatestTransactionsSortedByCustomerId(transactions, n) {
     );
 
     // Select the latest `n` transactions from the sorted array
-    const latestForCustomer = sortedTransactions.slice(0, n);
+    const latestForCustomer = sortedTransactions.slice(0,n);
 
     // Push selected transactions to the result array
     latestTransactions = latestTransactions.concat(latestForCustomer);

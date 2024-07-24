@@ -54,5 +54,12 @@
     "customerName": "Customer One",
     "transactionDate": "2023-02-20",
     "amount": 100
+  }, 
+  {
+    "transactionId": 22,
+    "customerId": 1,
+    "customerName": "Customer One",
+    "transactionDate": "2024-02-20",
+    "amount": 100
   }
 ]

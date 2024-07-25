@@ -4,7 +4,6 @@ import { logger } from "../logger";
 
 // Calculates the Reward points and total purchase amount of the customer transaction dataset
 export const CustomerTransactionCalculator = (transactionDataSet) => {
-  // TODO properly sort, and cut the array
   let updatedDataset = [];
   if (transactionDataSet) {
     updatedDataset = ConfigureDataset(transactionDataSet);
@@ -37,7 +36,7 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
         };
       
       // To prevent the automatic sort of numeric keys of Object in Javascript
-      year = year +' ';
+      year = year +' '; 
       if (!res[customerId].yearlyTransaction[year])
         res[customerId].yearlyTransaction[year] = {
           totalRewardsPerYear: 0,

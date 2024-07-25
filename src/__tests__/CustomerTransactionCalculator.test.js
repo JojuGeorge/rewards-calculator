@@ -17,7 +17,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 90,
             totalPurchasePerYear: 120,
             monthlyTransaction: {
@@ -52,7 +52,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 251,
             totalPurchasePerYear: 200,
             monthlyTransaction: {
@@ -94,7 +94,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 90,
             totalPurchasePerYear: 120,
             monthlyTransaction: {
@@ -110,7 +110,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 20,
             totalPurchasePerYear: 70,
             monthlyTransaction: {
@@ -159,7 +159,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 130,
             totalPurchasePerYear: 210,
             monthlyTransaction: {
@@ -179,7 +179,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 20,
             totalPurchasePerYear: 70,
             monthlyTransaction: {
@@ -221,7 +221,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 10,
             totalPurchasePerYear: 60,
             monthlyTransaction: {
@@ -237,7 +237,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          2024: {
+          "2024 " : {
             totalRewardsPerYear: 0,
             totalPurchasePerYear: 20,
             monthlyTransaction: {

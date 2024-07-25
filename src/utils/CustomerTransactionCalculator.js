@@ -25,7 +25,7 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
       const month = new Date(transactionDate).toLocaleString("default", {
         month: "long",
       });
-      const year = new Date(transactionDate).getFullYear();
+      let year = new Date(transactionDate).getFullYear();
       // Calculate the Reward points based on the amount of purchase
       const rewardPoints = CustomerRewardCalculator(amount);
 
@@ -35,7 +35,9 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
           yearlyTransaction: {},
           totalRewards: 0,
         };
-
+      
+      // To prevent the automatic sort of numeric keys of Object in Javascript
+      year = year +' ';
       if (!res[customerId].yearlyTransaction[year])
         res[customerId].yearlyTransaction[year] = {
           totalRewardsPerYear: 0,

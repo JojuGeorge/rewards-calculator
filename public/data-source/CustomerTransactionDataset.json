@@ -3,15 +3,8 @@
     "transactionId": 66,
     "customerId": 4,
     "customerName": "Customer Four",
-    "transactionDate": "2024-07-25",
+    "transactionDate": "2023-01-25",
     "amount": 80
-  },
-  {
-    "transactionId": 69,
-    "customerId": 4,
-    "customerName": "Customer Four",
-    "transactionDate": "2024-06-05",
-    "amount": 60
   },
   {
     "transactionId": 5,
@@ -46,6 +39,13 @@
     "customerId": 4,
     "customerName": "Customer Four",
     "transactionDate": "2023-04-02",
+    "amount": 44
+  },
+  {
+    "transactionId": 68,
+    "customerId": 4,
+    "customerName": "Customer Four",
+    "transactionDate": "2024-01-02",
     "amount": 44
   },
   {

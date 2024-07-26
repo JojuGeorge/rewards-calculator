@@ -1,4 +1,6 @@
 import { Config } from "../Config";
+import { logger } from "../../logger";
+
 
 export const ConfigureDataset = (dataSet) => {
   let data = dataSet;
@@ -17,6 +19,8 @@ function getLatestTransactionsSortedByCustomerId(transactions, recordLength) {
     groups[key].push(transaction);
     return groups;
   }, {});
+
+  logger.log("Grouped data : ", groupedTransactions)
 
   // Get an array of customerIds
   const customerIds = Object.keys(groupedTransactions);

@@ -1,12 +1,13 @@
+import { Config } from "../Config";
 
 export const ConfigureDataset = (dataSet) => {
   let data = dataSet;
-  data = getLatestTransactionsSortedByCustomerId(data, 3);
+  data = getLatestTransactionsSortedByCustomerId(data, Config.TRANSACTION_RECORD_LENGTH);
   return data;
 };
 
 // Function to retrieve the latest `n` transactions per customerId sorted by customerId
-function getLatestTransactionsSortedByCustomerId(transactions, n) {
+function getLatestTransactionsSortedByCustomerId(transactions, recordLength) {
   // Group transactions by customerId
   const groupedTransactions = transactions.reduce((groups, transaction) => {
     const key = transaction.customerId;
@@ -34,7 +35,7 @@ function getLatestTransactionsSortedByCustomerId(transactions, n) {
     );
 
     // Select the latest `n` transactions from the sorted array
-    const latestForCustomer = sortedTransactions.slice(0,n);
+    const latestForCustomer = sortedTransactions.slice(0,recordLength);
 
     // Push selected transactions to the result array
     latestTransactions = latestTransactions.concat(latestForCustomer);

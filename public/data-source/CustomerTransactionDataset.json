@@ -35,6 +35,13 @@
     "amount": 200.3
   },
   {
+    "transactionId": 12,
+    "customerId": 1,
+    "customerName": "Customer One",
+    "transactionDate": "2024-03-01",
+    "amount": 130
+  },
+  {
     "transactionId": 68,
     "customerId": 4,
     "customerName": "Customer Four",
@@ -52,14 +59,14 @@
     "transactionId": 2,
     "customerId": 1,
     "customerName": "Customer One",
-    "transactionDate": "2023-02-20",
+    "transactionDate": "2023-05-20",
     "amount": 100
   }, 
   {
     "transactionId": 22,
     "customerId": 1,
     "customerName": "Customer One",
-    "transactionDate": "2024-02-20",
+    "transactionDate": "2024-05-20",
     "amount": 100
   }
 ]

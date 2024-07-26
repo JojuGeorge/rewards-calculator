@@ -13,13 +13,13 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
   // Returns an Object of computed customer transaction dataset
   const transactionData =
     updatedDataset &&
-    updatedDataset.reduce((res, transactionData) => {
+    updatedDataset.reduce((res, data) => {
       const {
         customerId,
         customerName,
         transactionDate,
         amount,
-      } = transactionData;
+      } = data;
 
       const month = new Date(transactionDate).toLocaleString("default", {
         month: "long",

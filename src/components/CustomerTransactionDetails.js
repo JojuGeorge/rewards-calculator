@@ -22,6 +22,7 @@ function CustomerTransactionDetails() {
         logger.log("Set Fetched customer transaction dataset", dataSet);
         setTransactionDataSet(dataSet);
       } catch (error) {
+        setIsLoading(false);
         setError(error);
         logger.error(error);
       }

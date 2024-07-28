@@ -265,7 +265,6 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
         },
         totalRewards: 0,
         totalTransaction: 20,
-        addEventListener,
       },
     };
 

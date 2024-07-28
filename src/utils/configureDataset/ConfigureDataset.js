@@ -53,7 +53,10 @@ function getLatestTransactionsSortedByCustomerId(transactions, recordLength) {
   });
 
   const groupedSortedTransactions = groupedTransactions(latestTransactions);
-  logger.log("Grouped Sorted Transactions : ", groupedSortedTransactions);
+  logger.log(
+    "Grouped Sorted Transactions of latest N records : ",
+    groupedSortedTransactions
+  );
 
   let latestTransactionOfNMonthPeriod = [];
   const getLatestTransactionOfNMonth = (groupedData) => {

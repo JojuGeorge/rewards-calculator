@@ -7,7 +7,10 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
   let updatedDataset = [];
   if (transactionDataSet) {
     updatedDataset = ConfigureDataset(transactionDataSet);
-    logger.log("Configured and sorted dataset : ", updatedDataset);
+    logger.log(
+      "Configured and sorted dataset of N month period: ",
+      updatedDataset
+    );
   }
 
   // Returns an Object of computed customer transaction dataset

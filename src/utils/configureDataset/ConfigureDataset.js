@@ -52,24 +52,38 @@ function getLatestTransactionsSortedByCustomerId(transactions, recordLength) {
     latestTransactions = latestTransactions.concat(latestForCustomer);
   });
 
-  // TEST--------------------
-  const gd = groupedTransactions(latestTransactions);
-  console.log("================", gd);
+  const groupedSortedTransactions = groupedTransactions(latestTransactions);
+  logger.log("Grouped Sorted Transactions : ", groupedSortedTransactions);
 
-  // console.log("========", gd[0].transactionDate);
-  let x = [];
-  const data1 = (gd) => {
-    Object.keys(gd).map((custid) => {
-      let latestDate = gd[custid][0].transactionDate;
-      gd[custid].forEach((transaction) => {
-        let latestYear = new Date(latestDate).getFullYear();
-        let otherYear = new Date(transaction.transactionDate).getFullYear();
+  let latestTransactionOfNMonthPeriod = [];
+  const getLatestTransactionOfNMonth = (groupedData) => {
+    Object.keys(groupedData).map((custid) => {
+      let latestDate = groupedData[custid][0].transactionDate;
+      groupedData[custid].forEach((transaction) => {
+        let otherDate = transaction.transactionDate;
+        // if transaction is not in same year
+        if (
+          new Date(latestDate).getFullYear() !==
+          new Date(transaction.transactionDate).getFullYear()
+        ) {
+          let monthDiff = 12 - new Date(transaction.transactionDate).getMonth();
+          if (monthDiff <= Config.TRANSACTION_RECORD_LENGTH) {
+            latestTransactionOfNMonthPeriod.push(transaction);
+          }
+        } else {
+          // else transaction in same year
+          if (
+            new Date(latestDate).getMonth() -
+              new Date(transaction.transactionDate).getMonth() <=
+            Config.TRANSACTION_RECORD_LENGTH
+          ) {
+            latestTransactionOfNMonthPeriod.push(transaction);
+          }
+        }
       });
     });
   };
-  data1(gd);
+  getLatestTransactionOfNMonth(groupedSortedTransactions);
 
-  // test end-----------------
-
-  return latestTransactions;
+  return latestTransactionOfNMonthPeriod;
 }

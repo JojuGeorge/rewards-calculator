@@ -275,6 +275,292 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
     ).toEqual(expectedDataset);
   });
 
+  test("Get only latest transaction data of Period of N months, where transaction data contains more than N consecutive months  of transaction within the same year ", () => {
+    const transactionData = [
+      {
+        transactionId: 22,
+        customerId: 1,
+        customerName: "Customer One",
+        transactionDate: "2024-05-20",
+        amount: 100,
+      },
+      {
+        transactionId: 3,
+        customerId: 1,
+        customerName: "Customer One",
+        transactionDate: "2024-04-05",
+        amount: 101,
+      },
+      {
+        transactionId: 12,
+        customerId: 1,
+        customerName: "Customer One",
+        transactionDate: "2024-03-01",
+        amount: 130,
+      },
+      {
+        transactionId: 1,
+        customerId: 1,
+        customerName: "Customer One",
+        transactionDate: "2024-01-12",
+        amount: 200.3,
+      },
+    ];
+
+    const expectedDataset = {
+      1: {
+        customerName: "Customer One",
+        yearlyTransaction: {
+          "2024 ": {
+            totalRewardsPerYear: 212,
+            totalPurchasePerYear: 331,
+            monthlyTransaction: {
+              May: {
+                monthlyAmount: 100,
+                monthlyReward: 50,
+              },
+              April: {
+                monthlyAmount: 101,
+                monthlyReward: 52,
+              },
+              March: {
+                monthlyAmount: 130,
+                monthlyReward: 110,
+              },
+            },
+          },
+        },
+        totalTransaction: 331,
+        totalRewards: 212,
+      },
+    };
+
+    expect(
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
+    ).toEqual(expectedDataset);
+  });
+
+  test("Transaction dataset with multiple transaction within the same month", () => {
+    const transactionData = [
+      {
+        transactionId: 4,
+        customerId: 2,
+        customerName: "Customer Two",
+        transactionDate: "2024-03-12",
+        amount: 100,
+      },
+      {
+        transactionId: 4,
+        customerId: 2,
+        customerName: "Customer Two",
+        transactionDate: "2024-03-14",
+        amount: 100,
+      },
+    ];
+
+    const expectedDataset = {
+      2: {
+        customerName: "Customer Two",
+        yearlyTransaction: {
+          "2024 ": {
+            totalRewardsPerYear: 100,
+            totalPurchasePerYear: 200,
+            monthlyTransaction: {
+              March: {
+                monthlyAmount: 200,
+                monthlyReward: 100,
+              },
+            },
+          },
+        },
+        totalTransaction: 200,
+        totalRewards: 100,
+      },
+    };
+
+    expect(
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
+    ).toEqual(expectedDataset);
+  });
+
+  test("Get only latest transaction of N month period from dataset containing consecutive transaction of N months with different years", () => {
+    const transactionData = [
+      {
+        transactionId: 5,
+        customerId: 3,
+        customerName: "Customer Three",
+        transactionDate: "2024-01-25",
+        amount: 120,
+      },
+      {
+        transactionId: 5,
+        customerId: 3,
+        customerName: "Customer Three",
+        transactionDate: "2023-12-25",
+        amount: 120,
+      },
+      {
+        transactionId: 5,
+        customerId: 3,
+        customerName: "Customer Three",
+        transactionDate: "2023-11-25",
+        amount: 120,
+      },
+    ];
+
+    const expectedDataset = {
+      3: {
+        customerName: "Customer Three",
+        yearlyTransaction: {
+          "2024 ": {
+            totalRewardsPerYear: 90,
+            totalPurchasePerYear: 120,
+            monthlyTransaction: {
+              January: {
+                monthlyAmount: 120,
+                monthlyReward: 90,
+              },
+            },
+          },
+          "2023 ": {
+            totalRewardsPerYear: 180,
+            totalPurchasePerYear: 240,
+            monthlyTransaction: {
+              December: {
+                monthlyAmount: 120,
+                monthlyReward: 90,
+              },
+              November: {
+                monthlyAmount: 120,
+                monthlyReward: 90,
+              },
+            },
+          },
+        },
+        totalTransaction: 360,
+        totalRewards: 270,
+      },
+    };
+
+    expect(
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
+    ).toEqual(expectedDataset);
+  });
+
+  test("Get only latest transaction of N month period from dataset containing non consecutive transaction of N months with different years", () => {
+    const transactionData = [
+      {
+        transactionId: 68,
+        customerId: 4,
+        customerName: "Customer Four",
+        transactionDate: "2024-01-02",
+        amount: 44,
+      },
+      {
+        transactionId: 68,
+        customerId: 4,
+        customerName: "Customer Four",
+        transactionDate: "2023-04-02",
+        amount: 44,
+      },
+      {
+        transactionId: 66,
+        customerId: 4,
+        customerName: "Customer Four",
+        transactionDate: "2023-01-25",
+        amount: 80,
+      },
+    ];
+
+    const expectedDataset = {
+      4: {
+        customerName: "Customer Four",
+        yearlyTransaction: {
+          "2024 ": {
+            totalRewardsPerYear: 0,
+            totalPurchasePerYear: 44,
+            monthlyTransaction: {
+              January: {
+                monthlyAmount: 44,
+                monthlyReward: 0,
+              },
+            },
+          },
+        },
+        totalTransaction: 44,
+        totalRewards: 0,
+      },
+    };
+
+    expect(
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
+    ).toEqual(expectedDataset);
+  });
+
+  test("Get only latest transaction of N month period from dataset containing non consecutive transaction of N months within same year", () => {
+    const transactionData = [
+      {
+        transactionId: 66,
+        customerId: 5,
+        customerName: "Customer Five",
+        transactionDate: "2024-07-01",
+        amount: 80,
+      },
+      {
+        transactionId: 66,
+        customerId: 5,
+        customerName: "Customer Five",
+        transactionDate: "2024-06-01",
+        amount: 80,
+      },
+      {
+        transactionId: 66,
+        customerId: 5,
+        customerName: "Customer Five",
+        transactionDate: "2024-01-25",
+        amount: 80,
+      },
+    ];
+
+    const expectedDataset = {
+      5: {
+        customerName: "Customer Five",
+        yearlyTransaction: {
+          "2024 ": {
+            totalRewardsPerYear: 60,
+            totalPurchasePerYear: 160,
+            monthlyTransaction: {
+              July: {
+                monthlyAmount: 80,
+                monthlyReward: 30,
+              },
+              June: {
+                monthlyAmount: 80,
+                monthlyReward: 30,
+              },
+            },
+          },
+        },
+        totalTransaction: 160,
+        totalRewards: 60,
+      },
+    };
+
+    expect(
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
+    ).toEqual(expectedDataset);
+  });
+
   test("Reward points calculation for empty data set", () => {
     const transactionData = [];
 

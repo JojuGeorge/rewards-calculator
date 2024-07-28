@@ -5,6 +5,7 @@ import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalcu
 import "../styles/css/CustomerTransactionDetails.css";
 import { logger } from "../logger";
 import { CalculateTotalRewardsAndPurchase } from "../utils/configureDataset/CalculateTotalRewardsAndPurchase";
+import { Config } from "../utils/Config";
 
 // Wrapper component
 function CustomerTransactionDetails() {
@@ -28,6 +29,11 @@ function CustomerTransactionDetails() {
       }
     };
     getDataSet();
+
+    // if we didnt get any response within the specific time then set loading as false, so the the loading screen wont show infinitely
+    setTimeout(() => {
+      setIsLoading(false);
+    }, Config.LOAD_TIMEOUT);
   }, []);
 
   useEffect(() => {

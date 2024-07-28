@@ -1,5 +1,5 @@
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
-import { calculateTotalRewards } from '../utils/configureDataset/CalculateTotalRewards'
+import { CalculateTotalRewardsAndPurchase } from "../utils/configureDataset/CalculateTotalRewardsAndPurchase";
 
 describe("Calculate reward points, purchase and check correct dataset", () => {
   test("Reward points calculation for single transaction above 100", () => {
@@ -17,7 +17,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 90,
             totalPurchasePerYear: 120,
             monthlyTransaction: {
@@ -29,11 +29,14 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 90,
+        totalTransaction: 120,
       },
     };
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 
@@ -52,7 +55,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 251,
             totalPurchasePerYear: 200,
             monthlyTransaction: {
@@ -64,11 +67,14 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 251,
+        totalTransaction: 200,
       },
     };
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 
@@ -94,7 +100,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 90,
             totalPurchasePerYear: 120,
             monthlyTransaction: {
@@ -106,11 +112,12 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 90,
+        totalTransaction: 120,
       },
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 20,
             totalPurchasePerYear: 70,
             monthlyTransaction: {
@@ -122,11 +129,14 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 20,
+        totalTransaction: 70,
       },
     };
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 
@@ -159,7 +169,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 130,
             totalPurchasePerYear: 210,
             monthlyTransaction: {
@@ -175,11 +185,12 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 130,
+        totalTransaction: 210,
       },
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 20,
             totalPurchasePerYear: 70,
             monthlyTransaction: {
@@ -191,11 +202,14 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 20,
+        totalTransaction: 70,
       },
     };
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 
@@ -221,7 +235,7 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
       1: {
         customerName: "Customer One",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 10,
             totalPurchasePerYear: 60,
             monthlyTransaction: {
@@ -233,11 +247,12 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 10,
+        totalTransaction: 60,
       },
       2: {
         customerName: "Customer Two",
         yearlyTransaction: {
-          "2024 " : {
+          "2024 ": {
             totalRewardsPerYear: 0,
             totalPurchasePerYear: 20,
             monthlyTransaction: {
@@ -249,11 +264,15 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
           },
         },
         totalRewards: 0,
+        totalTransaction: 20,
+        addEventListener,
       },
     };
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 
@@ -263,7 +282,9 @@ describe("Calculate reward points, purchase and check correct dataset", () => {
     const expectedDataset = {};
 
     expect(
-      calculateTotalRewards(CustomerTransactionCalculator(transactionData))
+      CalculateTotalRewardsAndPurchase(
+        CustomerTransactionCalculator(transactionData)
+      )
     ).toEqual(expectedDataset);
   });
 });

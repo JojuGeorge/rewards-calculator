@@ -1,5 +1,6 @@
 import { Config } from "../Config";
 import { logger } from "../../logger";
+import { getLatestTransactionOfNMonth } from "./GetLatestTransactionOfNMonth";
 
 export const ConfigureDataset = (dataSet) => {
   let data = dataSet;
@@ -58,35 +59,6 @@ function getLatestTransactionsSortedByCustomerId(transactions, recordLength) {
     groupedSortedTransactions
   );
 
-  let latestTransactionOfNMonthPeriod = [];
-  const getLatestTransactionOfNMonth = (groupedData) => {
-    Object.keys(groupedData).map((custid) => {
-      let latestDate = groupedData[custid][0].transactionDate;
-      groupedData[custid].forEach((transaction) => {
-        let otherDate = transaction.transactionDate;
-        // if transaction is not in same year
-        if (
-          new Date(latestDate).getFullYear() !==
-          new Date(transaction.transactionDate).getFullYear()
-        ) {
-          let monthDiff = 12 - new Date(transaction.transactionDate).getMonth();
-          if (monthDiff <= Config.TRANSACTION_RECORD_LENGTH) {
-            latestTransactionOfNMonthPeriod.push(transaction);
-          }
-        } else {
-          // else transaction in same year
-          if (
-            new Date(latestDate).getMonth() -
-              new Date(transaction.transactionDate).getMonth() <=
-            Config.TRANSACTION_RECORD_LENGTH
-          ) {
-            latestTransactionOfNMonthPeriod.push(transaction);
-          }
-        }
-      });
-    });
-  };
-  getLatestTransactionOfNMonth(groupedSortedTransactions);
-
-  return latestTransactionOfNMonthPeriod;
+  // below function will return latest transaction over consecutive N month period
+  return getLatestTransactionOfNMonth(groupedSortedTransactions);
 }

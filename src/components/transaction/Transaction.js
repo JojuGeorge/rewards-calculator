@@ -11,7 +11,7 @@ function Transaction({ customerId, data }) {
       className="card"
       label={`${customerId}.${data[customerId].customerName}`}
     >
-      <table className="  sm-2">
+      <table className="sm-2">
         <thead className="table-head">
           <tr>
             <th>Year</th>
@@ -41,23 +41,19 @@ function Transaction({ customerId, data }) {
                     }
                   />
                 ))}
-                <tr className="total-row">
-                  <th>Total</th>
-                  <td></td>
-                  <td><b>${
-                      data[customerId].yearlyTransaction[year]
-                        .totalPurchasePerYear
-                    }</b>
-                  </td>
-                  <td><b>{
-                      data[customerId].yearlyTransaction[year]
-                        .totalRewardsPerYear
-                    }</b>
-                  </td>
-                </tr>
               </React.Fragment>
             );
           })}
+          <tr className="total-row">
+            <th>Total</th>
+            <td></td>
+            <td>
+              <b>${data[customerId].totalTransaction}</b>
+            </td>
+            <td>
+              <b>{data[customerId].totalRewards}</b>
+            </td>
+          </tr>
         </tbody>
       </table>
       <div className="total-reward-points">
@@ -66,6 +62,5 @@ function Transaction({ customerId, data }) {
     </div>
   );
 }
-
 
 export default Transaction;

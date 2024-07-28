@@ -4,7 +4,7 @@ import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
 import "../styles/css/CustomerTransactionDetails.css";
 import { logger } from "../logger";
-import { calculateTotalRewards } from "../utils/configureDataset/CalculateTotalRewards";
+import { CalculateTotalRewardsAndPurchase } from "../utils/configureDataset/CalculateTotalRewardsAndPurchase";
 
 // Wrapper component
 function CustomerTransactionDetails() {
@@ -37,13 +37,13 @@ function CustomerTransactionDetails() {
       // Calculate the reward points of the fetched customer transaction dataset
       let compData = CustomerTransactionCalculator(transactionDataSet);
       Object.keys(compData).map((custId) =>
-        logger.log("Computed Trasaction details of", computedData[custId])
+        logger.log("Computed Trasaction details of", compData[custId])
       );
       logger.log(
         "Dataset of transaction after calculating reward points",
         compData
       );
-      compData = calculateTotalRewards(compData);
+      compData = CalculateTotalRewardsAndPurchase(compData);
       setComputedData(compData);
     }
   }, [transactionDataSet]);

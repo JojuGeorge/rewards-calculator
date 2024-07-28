@@ -14,12 +14,7 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
   const transactionData =
     updatedDataset &&
     updatedDataset.reduce((res, data) => {
-      const {
-        customerId,
-        customerName,
-        transactionDate,
-        amount,
-      } = data;
+      const { customerId, customerName, transactionDate, amount } = data;
 
       const month = new Date(transactionDate).toLocaleString("default", {
         month: "long",
@@ -32,11 +27,12 @@ export const CustomerTransactionCalculator = (transactionDataSet) => {
         res[customerId] = {
           customerName: "",
           yearlyTransaction: {},
+          totalTransaction: 0,
           totalRewards: 0,
         };
-      
+
       // To prevent the automatic sort of numeric keys of Object in Javascript
-      year = year +' '; 
+      year = year + " ";
       if (!res[customerId].yearlyTransaction[year])
         res[customerId].yearlyTransaction[year] = {
           totalRewardsPerYear: 0,

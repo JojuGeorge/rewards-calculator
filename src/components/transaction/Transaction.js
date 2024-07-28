@@ -57,7 +57,7 @@ function Transaction({ customerId, data }) {
         </tbody>
       </table>
       <div className="total-reward-points">
-        <b>Total Reward Points : {data[customerId].totalRewards} Points</b>
+        <b>Total Reward Points : {data[customerId].totalRewards} {data[customerId].totalRewards > 0 ? "Points" : "Point"}</b>
       </div>
     </div>
   );

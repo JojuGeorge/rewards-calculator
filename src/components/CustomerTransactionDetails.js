@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Transaction from "./transaction/Transaction";
 import GetTransactionDataset from "../service/TransactionDatasetApi";
 import { CustomerTransactionCalculator } from "../utils/CustomerTransactionCalculator";
@@ -10,7 +10,7 @@ import { Config } from "../utils/Config";
 // Wrapper component
 function CustomerTransactionDetails() {
   const [transactionDataSet, setTransactionDataSet] = useState([]);
-  const [computedData, setComputedData] = useState({});
+  // const [computedData, setComputedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -36,9 +36,27 @@ function CustomerTransactionDetails() {
     }, Config.LOAD_TIMEOUT);
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   // Check if the Customer transaction dataset was successfully fetched
+  //   if (transactionDataSet && transactionDataSet.length > 0) {
+  //     setIsLoading(false);
+  //     // Calculate the reward points of the fetched customer transaction dataset
+  //     let compData = CustomerTransactionCalculator(transactionDataSet);
+  //     Object.keys(compData).map((custId) =>
+  //       logger.log("Computed Trasaction details of", compData[custId])
+  //     );
+  //     logger.log(
+  //       "Dataset of transaction after calculating reward points",
+  //       compData
+  //     );
+  //     compData = CalculateTotalRewardsAndPurchase(compData);
+  //     setComputedData(compData);
+  //   }
+  // }, [transactionDataSet]);
+
+  const computedData = useMemo(() => {
     // Check if the Customer transaction dataset was successfully fetched
-    if (transactionDataSet && transactionDataSet.length > 0) {
+    if ( transactionDataSet.length > 0) {
       setIsLoading(false);
       // Calculate the reward points of the fetched customer transaction dataset
       let compData = CustomerTransactionCalculator(transactionDataSet);
@@ -50,8 +68,9 @@ function CustomerTransactionDetails() {
         compData
       );
       compData = CalculateTotalRewardsAndPurchase(compData);
-      setComputedData(compData);
+      return compData;
     }
+    return {}
   }, [transactionDataSet]);
 
   if (error) return <p className="errorMessage">{error.message}</p>;
